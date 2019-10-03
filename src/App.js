@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import 'rbx/index.css';
+import { Button, Container, Title } from 'rbx';
+import './App.css'
+import './bulma.min.css'
 
 const App = () => {
   const [data, setData] = useState({});
@@ -13,10 +17,32 @@ const App = () => {
   }, []);
 
   return (
-    <ul>
-      {products.map(product => <li key={product.sku}>{product.title}</li>)}
-    </ul>
+    <Container>
+      <ProductsList products={products} />
+    </Container>
   );
 };
+
+const ProductsList = ({products}) => (
+  <div className='products-list columns is-multiline'>
+    {products.map(product => <Product product={product} />)}
+  </div>
+)
+
+const Product = ({product}) =>(
+  <Container className='product-card column is-3'>
+    <div>{getProductName(product)}</div>
+    <div>${getProductPrice(product)}</div>
+    <Button>Add to cart</Button>
+  </Container>
+);
+
+const getProductName = product => (
+  product.title
+);
+
+const getProductPrice = product =>(
+  product.price
+);
 
 export default App;
