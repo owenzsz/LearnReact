@@ -22,21 +22,27 @@
 }
 
 .product-card{
-  border: 1px solid black;
+  box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 10px;
   padding: 10px;
-
+  padding-bottom: 20px;
 }
 
-.product-name{
-  margin-top: 10px;
-}
-.product-price{
-  margin-top: 5px;
+.product-sizes{
   margin-bottom: 10px;
 }
 
+.product-sizes Button{
+  margin-right: 5px;
+}
+
+.product-info{
+  width: 100%;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
