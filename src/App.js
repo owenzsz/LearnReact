@@ -32,28 +32,13 @@ const ProductsList = ({products}) => (
   <div className='products-list columns is-multiline'>
     {products.map(product => <Product product={product} />)}
   </div>
- 
 )
 
-const Product = ({product, selectState}) =>(
-  <Container className='column is-3 is-centered'>
-    <div className='product-card'>
-      <img src={getProductImageURL(product)} ></img>
-      <div class='product-info'>
-        <div class='product-name'>{getProductName(product)}</div>
-        <div class='product-description'> {getProductDescription(product)}</div>
-        <div class='product-price'> {getProductPrice(product)}</div>
-
-        <Button.Group class='product-sizes'>
-          <Button>S</Button>
-          <Button>M</Button>
-          <Button>L</Button>
-          <Button>XL</Button>
-        </Button.Group>
-      </div>
-
-      <Button onClick={()=>{selectState.addToCart(product, true);}}>Add to cart</Button>
-    </div>
+const Product = ({product}) =>(
+  <Container className='product-card column is-3'>
+    <div>{getProductName(product)}</div>
+    <div>${getProductPrice(product)}</div>
+    <Button>Add to cart</Button>
   </Container>
 );
 
