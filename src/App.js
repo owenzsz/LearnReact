@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'rbx/index.css';
-import { Button, Container, Title } from 'rbx';
+import { Button, Container} from 'rbx';
 import './App.css'
 import './bulma.min.css'
 
@@ -12,7 +12,6 @@ const ProductsList = ({products, addToCart}) => (
 )
 
 const ShoppingCart= ({contents, removeFromCart}) =>{
-  console.log(contents)
   return(
     <div>
       {contents.map(product=> <ShoppingCartItem product={product} removeFromCart={removeFromCart} />)}
@@ -23,7 +22,7 @@ const ShoppingCart= ({contents, removeFromCart}) =>{
 const ShoppingCartItem = ({product, removeFromCart}) => {
   return(
     <Container>
-      {product}
+      {product.title}
       <Button onClick={()=>{removeFromCart(product);}}>Remove from cart</Button>
     </Container>
     
@@ -67,18 +66,16 @@ const getProductImageURL = product =>(
 
 const App = () => {
   
-
   const [data, setData] = useState({});
   const [cartItems, setCartItems] = useState([]);
   const products = Object.values(data);
 
   const addToCart = (product) =>{
-    setCartItems(cartItems.concat(product.title))
+    setCartItems(cartItems.concat(product))
   }
 
   const removeFromCart =(product) =>{
-    const index = cartItems.indexOf(product);
-    setCartItems(cartItems.splice(index, 1))
+    setCartItems(cartItems.filter(item=>item.sku!=product.sku));
     console.log(cartItems)
   }
 
@@ -92,7 +89,7 @@ const App = () => {
     fetchProducts();
   }, []);
 
-
+  
   return (
     <Container>
       <ProductsList products={products} addToCart={addToCart} />
